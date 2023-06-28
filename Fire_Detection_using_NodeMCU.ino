@@ -1,14 +1,14 @@
-#define BLYNK_TEMPLATE_ID ""
-#define BLYNK_TEMPLATE_NAME ""
-#define BLYNK_AUTH_TOKEN ""
+#define BLYNK_TEMPLATE_ID "" //Add these
+#define BLYNK_TEMPLATE_NAME "" //from the
+#define BLYNK_AUTH_TOKEN "" //template you created in Blynk
 
 #define BLYNK_PRINT Serial
 #include <ESP8266WiFi.h>
 #include <BlynkSimpleEsp8266.h>
 
 char auth[] = BLYNK_AUTH_TOKEN;
-char ssid[] = "WiFI_Name"; 
-char pass[] = "WiFi_Password"; 
+char ssid[] = ""; //Enter WiFi name here
+char pass[] = ""; //Enter WiFi password here
 BlynkTimer timer;
 
 #define fire D2
@@ -17,6 +17,7 @@ BlynkTimer timer;
 #define buzzer  D7
 int fire_Val = 0;
 WidgetLED led(V1);
+
 void setup() {
   Serial.begin(9600); 
   pinMode(GREEN, OUTPUT);
@@ -27,10 +28,12 @@ void setup() {
   delay(2000);
   timer.setInterval(500L, mySensor);
 }
+
 void loop() {
   Blynk.run();
   timer.run();
 }
+
 void mySensor() {
   fire_Val = digitalRead(fire); 
   if (fire_Val == 0) {
